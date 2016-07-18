@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./trump-hat.js"></script>
+    <title>&lt;trump-hat&gt; Web Component</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+    <style>
+      body {
+        font-family: Helvetica, sans-serif;
+      }
+      h1 {
+        color: darkblue;
+      }
+      h2 {
+        color: darkred;
+      }
+      .commandline {
+        background-color: black;
+        color: white;
+        white-space: nowrap;
+      }
+      .commandline::before {
+        content: ">$ ";
+      }
+      input[type="text"] {
+        width: 20em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1><code>&lt;trump-hat&gt;</code> Web Component</h1>
+
+    <h2>About Notes</h2>
+    <p>
+      This demo requires a browser with
+      <a href="https://html.spec.whatwg.org/multipage/scripting.html#custom-elements">Custom Elements v1</a>
+      support. This feature is currently implemented behind a
+      <a href="https://developers.google.com/web/fundamentals/primers/customelements/">flag</a> in
+      <a href="https://www.google.com/chrome/browser/canary.html">Chrome Canary</a>.
+      Therefore, start Canary from the command line like so:<br>
+      <code class="commandline">/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --enable-blink-features=CustomElementsV1</code>
+    </p>
+
+    <h2>Live Demo</h2>
+    <p>If you don’t see a Trump hat, your browser doesn’t support Custom Elements v1 (see the <em>About Notes</em> above).</p>
+    <!-- This is the beginning of the juicy bit -->
+    <trump-hat color="white" embroidery="Make Web Components\nGreat Again" width="250px"></trump-hat>
+    <!-- This is the end of the juicy bit -->
+
+    <h2>Source Code</h2>
+    <pre><code id="code" class="language-javascript"></code></pre>
+
+    <h2>Web Component Interaction</h2>
+    <p>Changes are reflected in the Trump hat itself and the source code preview above.</p>
+    <p>
+      <input id="text" type="text" placeholder="Hat text (type line breaks as \n)">
+      <label for="text">Text</label>
+      <br>
+      <select id="color">
+        <option value="red">Red</option>
+        <option value="white">White</option>
+      </select>
+      <label for="color">Color</label>
+      <br>
+      <input id="width" type="range" min="50" max="500" step="10">
+      <label for="width">Width</label>
+      <br>
+      <input id="height" type="range" min="50" max="500" step="10">
+      <label for="height">Height</label>
+    </p>
+
+    <h2>Code, License, and Contact</h2>
+    <ul>
+      <li>Fork the
+      <a href="https://github.com/tomayac/trump-hat"><code>&lt;trump-hat&gt;</code> Web Component</a>
+      on GitHub.</li>
+      <li>Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.</li>
+      <li>Trump hat pictures “fair-use” via the
+      <a href="https://www.washingtonpost.com/news/the-fix/wp/2015/10/06/hey-lets-all-make-our-own-donald-trump-hats/">Washington Post</a>.</li>
+      <li>Developed by <a href="http://blog.tomayac.com/">Thomas Steiner</a> (🐦 <a href="https://twitter.com/tomayac">@tomayac</a>).</li>
+    </ul>
+
+    <script>
+      (function() {
+        'use strict';
+        const hat = document.querySelector('trump-hat');
+        const text = document.querySelector('#text');
+        text.value = hat.getAttribute('embroidery');
+        const color = document.querySelector('#color');
+        color.value = hat.getAttribute('color');
+        const width = document.querySelector('#width');
+        width.value = hat.getAttribute('width') || 'auto';
+        const height = document.querySelector('#height');
+        height.value = hat.getAttribute('height') || 'auto';
+        const code = document.querySelector('#code');
+
+        text.addEventListener('change', (e) => {
+          hat.setAttribute('embroidery', e.target.value);
+          updateCode();
+        });
+        color.addEventListener('input', (e) => {
+          hat.setAttribute('color', e.target.options[
+              e.target.options.selectedIndex].value);
+          updateCode();
+        });
+        width.addEventListener('change', (e) => {
+          hat.setAttribute('width', e.target.value + 'px');
+          updateCode();
+        });
+        height.addEventListener('change', (e) => {
+          hat.setAttribute('height', e.target.value + 'px');
+          updateCode();
+        });
+
+        function updateCode() {
+          code.innerHTML = hat.outerHTML
+              .replace(/style\=".*?"/g, '')
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;')
+              .replace(/"/g, '&quot;')
+              .replace(/\s*&gt;/g, '&gt;')
+              .replace(/\s+/g, ' ');
+          Prism.highlightElement(code);
+        }
+        updateCode();
+      })();
+    </script>
+  </body>
+</html>

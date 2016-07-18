@@ -1,0 +1,31 @@
+{
+  "name": "trump-hat",
+  "version": "1.0.0",
+  "description": "Fun Web Component to declaratively create a customized iconic Trump hat.",
+  "main": "trump-hat.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^3.1.0",
+    "eslint-config-google": "^0.6.0"
+  },
+  "eslintConfig": {
+    "extends": "google"
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "web components",
+    "trump hat"
+  ],
+  "author": "Thomas Steiner <steiner.thomas@gmail.com> (http://blog.tomayac.com/)",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomayac/trump-hat.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tomayac/trump-hat/issues"
+  },
+  "homepage": "https://github.com/tomayac/trump-hat#readme"
+}
