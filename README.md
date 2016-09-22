@@ -2,7 +2,11 @@
 
 ## About Notes
 
-This demo requires a browser with [Custom Elements v1](https://html.spec.whatwg.org/multipage/scripting.html#custom-elements) support. This feature is currently implemented behind a [flag](https://developers.google.com/web/fundamentals/primers/customelements/) in [Chrome Canary](https://www.google.com/chrome/browser/canary.html). Therefore, start Canary from the command line like so:
+This demo requires a browser with [Custom Elements v1](https://html.spec.whatwg.org/multipage/scripting.html#custom-elements) support.
+Google Chrome as of [version 54](https://www.chromestatus.com/feature/4696261944934400) is a good choice.
+On earlier versions, this feature was also implemented behind a [flag](https://developers.google.com/web/fundamentals/primers/customelements/),
+like in older [Chrome Canary](https://www.google.com/chrome/browser/canary.html) versions,
+where one could start Canary from the command line like so:
 ```bash
 >$ /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --enable-blink-features=CustomElementsV1
 ```
