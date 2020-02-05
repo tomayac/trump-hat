@@ -1,5 +1,7 @@
 # `<trump-hat>` Web Component
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tomayac/trump-hat.svg)](https://greenkeeper.io/)
+
 ## About Notes
 
 This demo requires a browser with [Custom Elements v1](https://html.spec.whatwg.org/multipage/scripting.html#custom-elements) support.
